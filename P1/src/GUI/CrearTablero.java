@@ -7,9 +7,9 @@ import java.awt.event.*;
 public class CrearTablero extends JFrame {
     private JTextField campoX;
     private JTextField campoY;
-    private Tableroo tablero;
+    private Tablero tablero;
 
-    public CrearTablero(Tableroo tablero) {
+    public CrearTablero(Tablero tablero) {
         this.tablero = tablero;
         initComponents();
     }
@@ -49,11 +49,12 @@ public class CrearTablero extends JFrame {
     }
 
     public static void main(String[] args) {
-        Tableroo tablero = new Tableroo();
+       /* Tableroo tablero = new Tableroo();*/
+        Tablero tablero = new Tablero();
         CrearTablero ventana = new CrearTablero(tablero);
     }
 }
-
+/*
 class Tableroo {
     private JFrame frame;
     private JPanel[][] tablero;
@@ -77,3 +78,4 @@ class Tableroo {
         frame.setVisible(true);
     }
 }
+*/

@@ -14,20 +14,20 @@ public class Tablero {
     private JPanel casilla;
     private Point punto;
 
-    public void inicializa() {
+    public void inicializa(int dimensionX, int dimensionY) {
         frame = new JFrame();
         frame.setBounds(100, 100, 600, 600);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.getContentPane().setLayout(new GridLayout(5,5));
-        tablero = new JPanel[5][5];
+        frame.getContentPane().setLayout(new GridLayout(dimensionX,dimensionY));
+        tablero = new JPanel[dimensionX][dimensionY];
      // Crear un conjunto para almacenar las coordenadas de las casillas marcadas
-        Set<Point> casillasMarcadas = new HashSet<>();
+        casillasMarcadas = new HashSet<>();
 
         // Crear un objeto Point para reutilizarlo dentro del bucle
         
 
-        for (int i = 0; i < 5; i++) {
-            for (int j = 0; j < 5; j++) {
+        for (int i = 0; i < dimensionX; i++) {
+            for (int j = 0; j < dimensionY; j++) {
                 final int x = i;
                 final int y = j;
                 
@@ -78,6 +78,6 @@ public class Tablero {
 
     public static void main(String[] args) {
         Tablero tablero = new Tablero();
-        tablero.inicializa();
+        tablero.inicializa(8,8);
     }
 }
