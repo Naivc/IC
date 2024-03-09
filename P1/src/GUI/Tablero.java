@@ -11,10 +11,14 @@ public class Tablero {
     private JFrame frame;
     private JPanel[][] tablero;
     private Set<Point> casillasMarcadas;
+    private Point ini;
+    private Point fin;
     private JPanel casilla;
     private Point punto;
 
     public void inicializa(int dimensionX, int dimensionY) {
+    	ini= new Point(-1,-1);
+    	fin= new Point(-1,-1);
         frame = new JFrame();
         frame.setBounds(100, 100, 600, 600);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -38,6 +42,7 @@ public class Tablero {
                         super.paintComponent(g);
                         punto = new Point(x, y); // Actualizar las coordenadas del punto
                         if (casillasMarcadas.contains(punto)) {
+                        	
                             g.setColor(Color.RED);
                               //Graphics2D g2d = (Graphics2D) g;
                               //Stroke oldStroke = g2d.getStroke();
@@ -45,6 +50,25 @@ public class Tablero {
                               g.drawLine(0, 0, getWidth(), getHeight());
                               g.drawLine(0, getHeight(), getWidth(), 0);
                               //g2d.setStroke(oldStroke);
+                             
+                        	
+                              
+                        }
+                        if (punto.equals(ini)) {
+                            g.setColor(Color.GREEN);
+                            g.drawOval(getWidth()/2, getHeight()/2,getWidth()/4, getHeight()/4);
+                            /*
+                              g.drawLine(0, 0, getWidth(), getHeight());
+                              g.drawLine(0, getHeight(), getWidth(), 0);
+                              */
+                        }
+                        if (punto.equals(fin)) {
+                            g.setColor(Color.BLUE);
+                            g.drawOval(getWidth()/2, getHeight()/2,getWidth()/4, getHeight()/4);
+                            /*
+                              g.drawLine(0, 0, getWidth(), getHeight());
+                              g.drawLine(0, getHeight(), getWidth(), 0);
+                              */
                         }
                     }
                 };
@@ -56,9 +80,16 @@ public class Tablero {
                         punto = new Point(x, y); // Actualizar las coordenadas del punto
                         if (casillasMarcadas.contains(punto)) {
                             casillasMarcadas.remove(punto);
-                        } else {
-                            casillasMarcadas.add(punto);
+                            ini=punto;
+                        } else if(punto.equals(ini)) {
+                        	ini = new Point(-1,-1);
+                        	fin= punto;
+                        }else if(punto.equals(fin)) {
+                        	fin = new Point(-1,-1);
+                        }else {
+                        	casillasMarcadas.add(punto);
                         }
+                         
                         frame.repaint();
                     }
                 });
@@ -74,10 +105,5 @@ public class Tablero {
 
 
         frame.setVisible(true);
-    }
-
-    public static void main(String[] args) {
-        Tablero tablero = new Tablero();
-        tablero.inicializa(8,8);
     }
 }
