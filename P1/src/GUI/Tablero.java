@@ -60,7 +60,7 @@ public class Tablero {
 					d.setVisible(true);
 				} else {
 					// se ejecuta algoritmia de A*
-					aestrella = new Aestrella(casillasMarcadas, ini, fin);
+					aestrella = new Aestrella(casillasMarcadas, ini, fin,dimensionX,dimensionY);
 					// se dibuja ruta una vez obtenido la ruta atraves de A*
 					rutaActiva = true;
 				}
@@ -70,6 +70,7 @@ public class Tablero {
 		});
 		toolPanel.add(confirma);
 		toolBar.add(toolPanel);
+
 		// Crear un objeto Point para reutilizarlo dentro del bucle
 
 		for (int i = 0; i < dimensionX; i++) {
@@ -101,7 +102,7 @@ public class Tablero {
 							g.fillOval(getWidth() / 2, getHeight() / 2, getWidth() / 4, getHeight() / 4);
 						}
 						// dibuja la ruta
-						if (aestrella.existeruta(punto) || rutaActiva) {
+						if (aestrella.existeruta(punto) && rutaActiva) {
 							g.setColor(Color.BLACK);
 							/*explicacion de direccion que va cada tramo de ruta
 							 *1 2 3
